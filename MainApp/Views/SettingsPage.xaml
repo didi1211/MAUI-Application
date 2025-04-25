@@ -22,7 +22,7 @@
         <Label Text="Enter your E-mail Address" FontSize="14" TextColor="Gray" FontFamily="PoppinsLight"></Label>
         <Entry Placeholder="Your E-mail" Text="{Binding Email}" ></Entry>
 
-        <Button Text="Spara"  Command="{Binding SaveCommand}"  HorizontalOptions="End" Margin="0,10" BackgroundColor="#DCCEF9"></Button>
+        <Button Text="Save"  Command="{Binding SaveCommand}"  HorizontalOptions="End" Margin="0,10" BackgroundColor="#DCCEF9"></Button>
         
     </VerticalStackLayout>
 
