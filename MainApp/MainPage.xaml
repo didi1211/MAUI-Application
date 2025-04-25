@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MainApp.ViewModels"
+             x:Class="MainApp.MainPage"
+              x:Name="Page">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="20">
+
+
+        <Label Text="My Devices" Grid.Column="0" FontFamily="PoppinsLight" TextColor="Gray" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+
+        <Label Text="&#xf021;" FontFamily="Solid" FontSize="18" TextColor="Gray" HorizontalOptions="End" Grid.Column="1">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LoadDevicesCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+        
+        
+
+        <ScrollView Grid.Row="2">
+            <FlexLayout BindableLayout.ItemsSource="{Binding Devices}" Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="16" CornerRadius="16" BackgroundColor="#DCCEF9" BorderColor="White" WidthRequest="160" HeightRequest="180" Margin="5">
+                            <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
+                                <Label Text="{Binding DeviceId}" Grid.Row="0" FontSize="18" HorizontalOptions="Center" TextColor="White" ></Label>
+                                <Label Text="&#xf2db;" FontFamily="Solid" Grid.Row="1" FontSize="40" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#C4B2ED"></Label>
+                                <Label  Text="&#xf2ed;" FontFamily="Solid" Grid.Row="2" FontSize="22" VerticalOptions="End" HorizontalOptions="End" TextColor="#977FD5"> 
+                                    <Label.GestureRecognizers>
+                                     <TapGestureRecognizer
+                                        Command="{Binding Source={x:Reference Page}, Path=BindingContext.RemoveDeviceCommand}"
+                                        CommandParameter="{Binding DeviceId}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
+
+        <Button Text="Settings" BackgroundColor="#DCCEF9" HorizontalOptions="End" Clicked="GoToSettings" Grid.Row="3" Margin="0,10"></Button>
+        
+    </Grid>
+</ContentPage>
